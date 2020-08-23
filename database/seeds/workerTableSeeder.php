@@ -22,7 +22,11 @@ class workerTableSeeder extends Seeder
                 'email'=>$faker->email,
                 'phone'=>$faker->phoneNumber,
                 'address'=>$faker->address,
-                'available'=>$faker->boolean
+                'available'=>$faker->boolean,
+                'labor_profile_id'=>
+                    $faker->numberBetween($min=1,$max=50),
+                'work_experience_id'=>
+                    $faker->numberBetween($min=1,$max=50)
             ]);
         }
     }

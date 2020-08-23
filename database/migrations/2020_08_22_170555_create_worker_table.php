@@ -14,10 +14,11 @@ class CreateWorkerTable extends Migration
     public function up()
     {
         Schema::create('worker', function (Blueprint $table) {
+            $table->id();
             $table->string('name',60);
             $table->string('lastname',60);
             $table->string('email',100);
-            $table->string('phone',10);
+            $table->string('phone',25);
             $table->string('address',250);
             $table->boolean('available');
             $table->bigInteger('labor_profile_id')
@@ -43,8 +44,6 @@ class CreateWorkerTable extends Migration
      */
     public function down()
     {
-        $table->dropForeign('labor_profile_id');
-        $table->dropForeign('work_experience_id');
         Schema::dropIfExists('worker');
     }
 }
