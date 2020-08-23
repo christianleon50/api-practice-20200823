@@ -20,8 +20,18 @@ class CreateWorkerTable extends Migration
             $table->string('phone',10);
             $table->string('address',250);
             $table->boolean('available');
-            $table->foreign('labor_profile_id')->references('id')->on('labor_profile');
-            $table->foreign('work_experience_id')->references('id')->on('work_experience');
+            $table->bigInteger('labor_profile_id')
+                ->unsigned();
+            $table->foreign('labor_profile_id')
+                ->references('id')
+                ->on('labor_profile')
+                ->onDelete('cascade');
+            $table->bigInteger('work_experience_id')
+                ->unsigned();
+            $table->foreign('work_experience_id')
+                ->references('id')
+                ->on('work_experience')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +43,8 @@ class CreateWorkerTable extends Migration
      */
     public function down()
     {
+        $table->dropForeign('labor_profile_id');
+        $table->dropForeign('work_experience_id');
         Schema::dropIfExists('worker');
     }
 }
